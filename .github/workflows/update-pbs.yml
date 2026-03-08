@@ -1,0 +1,36 @@
+name: Update PBS Dataset
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"   # runs monthly on the 1st
+  workflow_dispatch:
+
+jobs:
+  update-dataset:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Download PBS dataset
+        run: |
+          curl -L -o pbs_full_dataset.json https://data.pbs.gov.au/dataset/pbs-extract
+
+      - name: Run PBS parser
+        run: node scripts/pbs_parser.js
+
+      - name: Commit updated dataset
+        run: |
+          git config --global user.name "pbs-bot"
+          git config --global user.email "bot@users.noreply.github.com"
+          git add ibd_pbs_codes.json
+          git commit -m "Automatic PBS dataset update" || echo "No changes"
+          git push
