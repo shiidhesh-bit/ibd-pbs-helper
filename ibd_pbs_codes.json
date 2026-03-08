@@ -1,0 +1,92 @@
+[
+{
+"drug":"Infliximab",
+"brand":"Remicade",
+"disease":"Crohn's disease",
+"treatment_phase":"Initial",
+"formulation":"IV infusion",
+"pbs_code":"9303P",
+"authority":"Authority Required",
+"section":"S100"
+},
+{
+"drug":"Infliximab",
+"brand":"Inflectra (biosimilar)",
+"disease":"Crohn's disease",
+"treatment_phase":"Initial",
+"formulation":"IV infusion",
+"pbs_code":"9303P",
+"authority":"Authority Required",
+"section":"S100"
+},
+{
+"drug":"Infliximab",
+"brand":"Renflexis (biosimilar)",
+"disease":"Crohn's disease",
+"treatment_phase":"Initial",
+"formulation":"IV infusion",
+"pbs_code":"9303P",
+"authority":"Authority Required",
+"section":"S100"
+},
+{
+"drug":"Adalimumab",
+"brand":"Humira",
+"disease":"Ulcerative colitis",
+"treatment_phase":"Continuing",
+"formulation":"40 mg injection",
+"pbs_code":"10770T",
+"authority":"Authority Required",
+"section":"S100"
+},
+{
+"drug":"Adalimumab",
+"brand":"Amgevita (biosimilar)",
+"disease":"Ulcerative colitis",
+"treatment_phase":"Continuing",
+"formulation":"40 mg injection",
+"pbs_code":"10770T",
+"authority":"Authority Required",
+"section":"S100"
+},
+{
+"drug":"Vedolizumab",
+"brand":"Entyvio",
+"disease":"Ulcerative colitis",
+"treatment_phase":"Initial",
+"formulation":"300 mg IV",
+"pbs_code":"10768R",
+"authority":"Authority Required",
+"section":"S100"
+},
+{
+"drug":"Ustekinumab",
+"brand":"Stelara",
+"disease":"Crohn's disease",
+"treatment_phase":"Initial",
+"formulation":"IV induction",
+"pbs_code":"11188J",
+"authority":"Authority Required",
+"section":"S100"
+},
+{
+"drug":"Tofacitinib",
+"brand":"Xeljanz",
+"disease":"Ulcerative colitis",
+"treatment_phase":"Initial",
+"formulation":"Oral tablet",
+"pbs_code":"XXXXX",
+"authority":"Authority Required",
+"section":"S85"
+},
+{
+"drug":"Upadacitinib",
+"brand":"Rinvoq",
+"disease":"Ulcerative colitis",
+"treatment_phase":"Initial",
+"formulation":"Oral tablet",
+"pbs_code":"XXXXX",
+"authority":"Authority Required",
+"section":"S85"
+}
+]

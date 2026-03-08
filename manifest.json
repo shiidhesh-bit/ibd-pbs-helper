@@ -1,0 +1,9 @@
+{
+"name":"IBD PBS Helper",
+"short_name":"PBS Helper",
+"start_url":"/",
+"display":"standalone",
+"background_color":"#ffffff",
+"theme_color":"#2c3e50",
+"icons":[]
+}
