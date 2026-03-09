@@ -1,73 +1,77 @@
-let data = []
+// app.js
 
-const search = document.getElementById("search")
-const diseaseFilter = document.getElementById("diseaseFilter")
-const phaseFilter = document.getElementById("phaseFilter")
+let data = [];
 
-fetch("ibd_pbs_codes.json")
-.then(r => r.json())
-.then(json => {
+const search = document.getElementById("search");
+const diseaseFilter = document.getElementById("diseaseFilter");
+const phaseFilter = document.getElementById("phaseFilter");
 
-data = json
-render(data)
+// Load PBS data from JSON
+fetch("/ibd_pbs_codes.json") // Ensure the JSON is at the root of the deployment
+  .then((r) => {
+    if (!r.ok) throw new Error("Failed to load JSON file: " + r.status);
+    return r.json();
+  })
+  .then((json) => {
+    data = json;
+    render(data); // Initial render with all data
+  })
+  .catch((err) => console.error("Error loading PBS data:", err));
 
-})
+// Filter function
+function filter() {
+  const s = search.value.toLowerCase();
+  const disease = diseaseFilter.value;
+  const phase = phaseFilter.value;
 
-function filter(){
+  const results = data.filter((item) => {
+    return (
+      (disease === "" || item.disease === disease) &&
+      (phase === "" || item.treatment_phase === phase) &&
+      (s === "" ||
+        item.drug.toLowerCase().includes(s) ||
+        item.brand.toLowerCase().includes(s) ||
+        item.pbs_code.toLowerCase().includes(s))
+    );
+  });
 
-let s = search.value.toLowerCase()
-let disease = diseaseFilter.value
-let phase = phaseFilter.value
-
-let results = data.filter(item => {
-
-return (
-(disease === "" || item.disease === disease) &&
-(phase === "" || item.treatment_phase === phase) &&
-(
-s === "" ||
-item.drug.toLowerCase().includes(s) ||
-item.brand.toLowerCase().includes(s) ||
-item.pbs_code.toLowerCase().includes(s)
-)
-)
-
-})
-
-render(results)
-
+  render(results);
 }
 
-search.addEventListener("input",filter)
-diseaseFilter.addEventListener("change",filter)
-phaseFilter.addEventListener("change",filter)
+// Event listeners
+search.addEventListener("input", filter);
+diseaseFilter.addEventListener("change", filter);
+phaseFilter.addEventListener("change", filter);
 
-function render(rows){
+// Render function
+function render(rows) {
+  const tbody = document.querySelector("#results tbody");
+  tbody.innerHTML = "";
 
-const tbody = document.querySelector("#results tbody")
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center">No results found</td></tr>`;
+    return;
+  }
 
-tbody.innerHTML=""
-
-rows.forEach(item=>{
-
-let tr=document.createElement("tr")
-
-tr.innerHTML=`
-<td>${item.drug} (${item.brand})</td>
-<td>${item.disease}</td>
-<td>${item.treatment_phase}</td>
-<td>${item.formulation}</td>
-<td>${item.pbs_code}</td>
-<td>${item.authority}</td>
-<td>${item.section}</td>
-`
-
-tbody.appendChild(tr)
-
-})
-
+  rows.forEach((item) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item.drug} (${item.brand})</td>
+      <td>${item.disease}</td>
+      <td>${item.treatment_phase}</td>
+      <td>${item.formulation}</td>
+      <td>${item.pbs_code}</td>
+      <td>${item.authority}</td>
+      <td>${item.section}</td>
+    `;
+    tbody.appendChild(tr);
+  });
 }
 
-if("serviceWorker" in navigator){
-navigator.serviceWorker.register("service-worker.js")
+// Register service worker if supported
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/service-worker.js")
+    .then(() => console.log("Service worker registered"))
+    .catch((err) => console.error("Service worker registration failed:", err));
 }
