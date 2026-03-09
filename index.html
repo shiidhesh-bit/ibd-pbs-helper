@@ -1,57 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>IBD PBS Prescriber Helper</title>
-
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .no-results {
+            display: none;
+            color: red;
+        }
+    </style>
 </head>
-
 <body>
-
-<header>
-<h1>IBD PBS Prescriber Helper</h1>
-</header>
-
-<div class="controls">
-
-<input id="search" type="text" placeholder="Search drug or PBS code">
-
-<select id="diseaseFilter">
-<option value="">All diseases</option>
-<option value="Crohn's disease">Crohn's disease</option>
-<option value="Ulcerative colitis">Ulcerative colitis</option>
-</select>
-
-<select id="phaseFilter">
-<option value="">All phases</option>
-<option value="Initial">Initial</option>
-<option value="Continuing">Continuing</option>
-</select>
-
-</div>
-
-<table id="results">
-<thead>
-<tr>
-<th>Drug</th>
-<th>Disease</th>
-<th>Phase</th>
-<th>Formulation</th>
-<th>PBS Code</th>
-<th>Authority</th>
-<th>Section</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-
-<script src="app.js"></script>
-
+    <div class="no-results" id="no-results">No results found.</div>
+    <table>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
+    <script>
+        // Example logic to show no results if table is empty
+        const table = document.querySelector('table');
+        const noResultsDiv = document.getElementById('no-results');
+        if (!table.rows.length > 1) { // Adjusting check for empty table
+            noResultsDiv.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
